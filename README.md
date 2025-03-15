@@ -8,7 +8,8 @@ note: the traefik docker service will not be restarted, you need to restart it y
 First of all it creates files and directories in which the file is gonna work on, then it searches for your traefik.yaml file to locate then the config.yaml file (done like this because you can have more than one config.yaml file on your system), and saves it aswell as some other directories.
 After checking everything is correctly setup it starts the program, here you can select between various options
 
-also take note theres always a backup for your services that is called services.json.old which is  the workloads file that was used the last time you opened the script
+note: theres always a backup for your services that is called services.json.old which is  the workloads file that was used the last time you opened the script
+note 2: make sure you edit in static.json (if you want) the range of whitelisted IPs, if you dont care you can leave it as it is
 
 1. add new service
 2. delete an existing service
