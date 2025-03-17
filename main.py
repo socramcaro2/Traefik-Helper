@@ -144,7 +144,7 @@ def FileCheck():
                 if nombre_archivo in ArchivosEnCarpeta:
                     return directorio_actual  # Returns the folder path of the specified file
                 
-            log.warning('[[bold red]ERR[/bold red]] Directory not found, you want to specify it yourself? y/n')  # If not found, returns None
+            log.warning('[[bold red]ERR[/bold red]] Directory not found, you want to specify it yourself? y/n')  # asks for directory
             i = 0
             you_sure = input()
             while i != 1:
@@ -155,6 +155,8 @@ def FileCheck():
                 elif not you_sure.strip() or you_sure.lower() == 'y' or you_sure.lower() == 'yes':
                     i = 1
                     directorio_actual = input('input the directory: ')
+                    if not path.exists(directorio_actual):
+                        continue
                     return directorio_actual
                 else:
                     clear_screen()

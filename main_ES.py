@@ -144,7 +144,25 @@ def FileCheck():
             for directorio_actual, subcarpetas, ArchivosEnCarpeta in walk(directorio_base):
                 if nombre_archivo in ArchivosEnCarpeta:
                     return directorio_actual  # Devuelve la ruta de la carpeta del archivo indicado
-            return None  # Si no lo encuentra, devuelve None
+                
+            log.warning('[[bold red]ERR[/bold red]] Directory not found, you want to specify it yourself? y/n')  # pregunta por el directorio ya que no se encuentra
+            i = 0
+            you_sure = input()
+            while i != 1:
+                if you_sure.lower() == 'n' or you_sure.lower() == 'no':
+                    clear_screen()
+                    print('[bold]Bye![/bold]')
+                    exit(1)
+                elif not you_sure.strip() or you_sure.lower() == 'y' or you_sure.lower() == 'yes':
+                    i = 1
+                    directorio_actual = input('input the directory: ')
+                    if not path.exists(directorio_actual):
+                        continue
+                    return directorio_actual
+                else:
+                    clear_screen()
+                    print('[bold red]Not a valid option[/bold red], You want to specify it?')
+                    you_sure = input()
 
         with console.status(f'[cyan][/cyan] searching config.yaml'):
             global ruta
